@@ -1,6 +1,6 @@
 {
   "name": "proj.terminus.sitever",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Terminus project site versioning control",
   "main": "index.js",
   "manifest": [
@@ -115,6 +115,18 @@
         "民办小学被拆除",
         "逃离美发厅",
         "张康之"
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "files": [
+        "static-0.1.1.zip"
+      ],
+      "detail": [
+        "20180531更新",
+        "中央表态：三峡大坝有问题 各方正全力寻求解决方案",
+        "湖南武冈上千名教师集结，在雨夜里举行大规模游行讨薪",
+        "今天和昨天，六安戴着手铐的教师和跪在地上的教师都让我们看着泪目"
       ]
     }
   ],
