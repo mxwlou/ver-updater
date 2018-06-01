@@ -1,14 +1,28 @@
-# 端点星内容版本控制仓库（TSVC）
-## Terminus Site Version Control
+# 端点星内容版本控制仓库（TSVC）自动更新脚本
+## Terminus Site Version Control Auto Update Script
 
-「TSVC」是端点星计划 [Terminus](https://github.com/terminus2049) 的一个内容版本控制仓库，使用NodeJS开发，可以通过Travis自动构建进而整合进端点星计划站点的自动化构建流程中。
+## 注意事项
+* 本品需要和 TSVC 一起使用。默认推送仓库地址为 mxwlou/sitever
+* 如果需要客制化仓库地址，请首先克隆或者fork `mxwlou/sitever`, 然后克隆此仓库。
+* 然后需要安装 travis加密脚本(`gem install travis`)，并将 `.travis-ci.yml`的最后几行含`secure`的内容删除
+
+并且使用以下命令调用travis加密脚本加密这两个仓库并保存为环境加密变量：
+```shell
+travis encrypt GHLOC="https://username:password@github.com/user_or_organization/sitever" -r user_or_organization/sitever --add
+
+travis encrypt VERP="https://username:password@github.com/user_or_organization/ver-updater" -r user_or_organization/ver-updater --add
+
+```
+填入自己的 `username`, `password`, 以及 `user_or_organization` 设置好。commit即可。
+
+最后在`travis-ci`上为此仓库开通自动构建服务即可（提前开也行，但是请避免自动revert。构建脚本会进行自动revert以避开用户信息泄露的问题）。
+
+
 
 ## 使用方式：
+* 在Github上修改`dev`分支下的`update.json`,按照格式填写更新内容。
+* 网上直接Commit即可，无须担心用户信息泄漏问题，会由CI自动去除。
+* 等待自动构建。
 
-* git clone && npm install
-* 修改原站点的 `_config.yml` 中的 baseURL 将其改成 `/static`
-* 在原站点目录下使用 jekyll build 生成静态站点 `_site` , 将其拷贝至本项目的 `static` 文件夹并替换所有内容。
-* 修改 `package.json`, 更新版本号`version`，以及在 `manifest` 中加入新版本以及更新内容。
-* 执行 `npm start` 进行打包，生成最新版本的 `压缩包`
-* git add && git commit && git push 即可。
+或者你也可以使用本地构建方式，详见package.json 中的 npm script。
 

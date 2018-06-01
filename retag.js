@@ -17,6 +17,9 @@ if (newVersion !== oldVersion) {
     packageJSON.manifest.push(updateJSON);
 
     fs.writeFileSync('package.json', JSON.stringify(packageJSON));
-    fs.unlinkSync('update.json');
+    // fs.unlinkSync('update.json');
     console.log('版本Tag更新成功！');
+} else {
+    // throw new Error();
+    process.emit('exit',1);
 }
